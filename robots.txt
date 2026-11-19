@@ -1,0 +1,5 @@
+# Search engines may index the whole site. The sitemap lists its pages.
+User-agent: *
+Allow: /
+
+Sitemap: https://alperen.es/sitemap.xml

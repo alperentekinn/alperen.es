@@ -1,6 +1,6 @@
 # alperen.es
 
-The personal academic website of Alperen Tekin. Plain HTML and CSS: no framework, no build step, no JavaScript. Nothing here needs updating to keep working.
+The personal academic website of Alperen Tekin. Plain HTML and CSS, plus one small script for the menu bar: no framework and no build step. Nothing here needs updating to keep working.
 
 ## What is in this folder
 
@@ -20,9 +20,9 @@ The personal academic website of Alperen Tekin. Plain HTML and CSS: no framework
 
 On GitHub, open `index.html`, click the pencil, change the text, and click **Commit changes**. The live site updates within a minute or two.
 
-`index.html` is divided by comment banners: NAME AND ROLE, HOME, RESEARCH, TEACHING, CV, CONTACT. Find the banner, then the text.
+`index.html` is divided by comment banners: MENU BAR, NAME AND ROLE, HOME, RESEARCH, TEACHING, CV, CONTACT. Find the banner, then the text.
 
-**Add a paper or a publication.** Copy one block, from `<article class="entry">` to `</article>`, paste it where it belongs in the order, and change the text. Each block is a title, a grey line saying who and when, then a paragraph.
+**Add a paper or a publication.** Copy one block, from `<article class="entry">` to `</article>`, paste it where it belongs in the order, and change the text. Each block is a title, a grey line saying who and when, then a paragraph. For a working paper, keep the opening `<p class="abstract"><span class="runin">Abstract.</span>` so the abstract starts with that word in italics.
 
 **Link a draft.** Upload the PDF into a folder named `papers` (Add file, Upload files). Under that paper in `index.html`, delete the two lines marked `REMOVE` and fill in the addresses. Delete the SSRN link if you do not need it.
 
@@ -32,9 +32,11 @@ On GitHub, open `index.html`, click the pencil, change the text, and click **Com
 
 **Add profile links** (Google Scholar, ORCID, SSRN, LinkedIn). In the CONTACT section, delete the two lines marked `REMOVE`, replace the placeholder addresses with yours, and delete any line you do not use.
 
-**Add a portrait.** Save a photo as `assets/portrait.jpg`, ideally 800 by 1000 pixels. In the NAME AND ROLE section, delete the two lines marked `REMOVE`.
+**Add a portrait.** Save a photo as `assets/portrait.jpg`, ideally 800 by 1000 pixels. In the NAME AND ROLE section, delete the two lines marked `REMOVE`. On a wide screen the photo hangs in the margin beside your name; on a phone it sits above it.
 
-**Keep the site light for everyone.** Visitors whose device is in dark mode currently get a dark version. To switch that off, open `assets/style.css`, delete the block that begins `@media (prefers-color-scheme: dark)`, and change `light dark` to `light` in `style.css` (once) and in `index.html` and `404.html` (once each).
+**Add or rename a section.** Give the section an `id` (as in `<section class="section" id="research">`) and add a matching link in the MENU BAR (`href="#research"`). The bar marks whichever section is being read.
+
+**Keep the site light for everyone.** Visitors whose device is in dark mode currently get a dark version. To switch that off, open `assets/style.css`, delete the block that begins `@media (prefers-color-scheme: dark)`, and change `light dark` to `light` in `style.css` (once) and in `index.html` and `404.html` (once each). In those two pages, also delete the `theme-color` line that mentions `dark`.
 
 **When your position changes,** update it in four places in `index.html`: the line under your name, the `<title>` and description near the top, the `og:description` just below them, and the block that begins `"@type": "Person"`. The year in the footer is the only other date to keep current.
 

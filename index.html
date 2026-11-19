@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fcfcf9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no">
 
   <title>Alperen Tekin, University of the Balearic Islands</title>
   <meta name="description" content="Alperen Tekin is a PhD student in Economics, Management and Organization at the University of the Balearic Islands. He studies corporate governance, business groups and family firms.">
@@ -16,6 +19,9 @@
   <meta property="og:title" content="Alperen Tekin">
   <meta property="og:description" content="PhD student at the University of the Balearic Islands. Research on corporate governance, business groups and family firms.">
   <meta property="og:image" content="https://alperen.es/assets/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alperen Tekin. Corporate governance, business groups and family firms.">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/favicon.png" sizes="48x48" type="image/png">
@@ -24,6 +30,53 @@
 
   <link rel="preload" href="assets/fonts/stix-two-text-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Optional polish for the menu bar: your name appears in the bar once the
+       large name has scrolled away, and the section being read is marked.
+       The site works the same without it. -->
+  <script>
+    document.documentElement.classList.add('js');
+    document.addEventListener('DOMContentLoaded', function () {
+      var root = document.documentElement;
+      var bar = document.querySelector('.bar');
+      var name = document.querySelector('.name');
+      var links = [].slice.call(document.querySelectorAll('.nav a'));
+      var sections = links.map(function (a) {
+        return document.getElementById(a.getAttribute('href').slice(1));
+      });
+      var waiting = false;
+
+      function update() {
+        waiting = false;
+        var barHeight = bar.offsetHeight;
+        var line = barHeight + window.innerHeight * 0.3;
+        var current = -1;
+        root.classList.toggle('scrolled', window.scrollY > 4);
+        root.classList.toggle('past-name', name.getBoundingClientRect().bottom < barHeight);
+        sections.forEach(function (section, i) {
+          if (section && section.getBoundingClientRect().top <= line) current = i;
+        });
+        if (window.scrollY > 4 && window.innerHeight + window.scrollY >= root.scrollHeight - 2) {
+          current = sections.length - 1;
+        }
+        links.forEach(function (a, i) {
+          if (i === current) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      }
+
+      function request() {
+        if (!waiting) {
+          waiting = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      window.addEventListener('scroll', request, { passive: true });
+      window.addEventListener('resize', request);
+      update();
+    });
+  </script>
 
   <!-- Tells search engines who this page is about. Keep it in step with the text below. -->
   <script type="application/ld+json">
@@ -44,18 +97,42 @@
   </script>
 </head>
 
-<body>
+<body id="top">
 
-<a class="skip" href="#research">Skip to research</a>
+<a class="skip" href="#main">Skip to main content</a>
 
-<div class="page" id="top">
+
+<!-- =====================================================================
+     MENU BAR
+     Each link points at a section further down: href="#research" jumps to
+     the section that has id="research".
+     ===================================================================== -->
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="bar-name" href="#top">Alperen Tekin</a>
+    <nav class="nav" aria-label="Sections of this page">
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<div class="page">
+
+  <main id="main">
 
 
   <!-- ===================================================================
        NAME AND ROLE
        =================================================================== -->
 
-  <header class="masthead">
+  <div class="masthead">
     <div>
       <h1 class="name">Alperen Tekin</h1>
       <p class="role">PhD student in Economics, Management and Organization<br>
@@ -67,32 +144,23 @@
     <!-- REMOVE
     <img class="portrait" src="assets/portrait.jpg" alt="Portrait of Alperen Tekin" width="800" height="1000">
     REMOVE -->
-  </header>
+  </div>
 
-
-  <main>
 
   <!-- ===================================================================
-       HOME: navigation and introduction
+       HOME: introduction
+       The first paragraph (class "lead") is set larger than the rest.
        =================================================================== -->
 
-  <div class="block intro">
-    <nav class="nav" aria-label="Sections of this page">
-      <ul>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#cv">CV</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="intro">
+    <p class="lead">My research lies at the intersection of corporate finance and strategic management, with a focus on corporate governance, business groups and family firms. I study how ownership structures and organizational forms influence firms’ strategic decisions, innovation and entrepreneurial activity.</p>
 
-    <div class="main">
-      <p>My research lies at the intersection of corporate finance and strategic management, with a focus on corporate governance, business groups and family firms. I study how ownership structures and organizational forms influence firms’ strategic decisions, innovation and entrepreneurial activity.</p>
+    <p>I am a Predoctoral Research Fellow in the Faculty of Economics and Business, and my doctoral advisors are Rafel Crespí-Cladera and Alfredo Martín-Oliver. Before the PhD I completed an MRes in Business and Finance at University Charles III of Madrid and a BA in Business Administration at Marmara University.</p>
 
-      <p>I am a Predoctoral Research Fellow in the Faculty of Economics and Business, and my doctoral advisors are Rafel Crespí-Cladera and Alfredo Martín-Oliver. Before the PhD I completed an MRes in Business and Finance at University Charles III of Madrid and a BA in Business Administration at Marmara University.</p>
-
-      <p>My <a href="alperen-tekin-cv.pdf">curriculum vitae</a> is available as a PDF, and you can reach me at <a href="mailto:alperen.tekin@uib.eu">alperen.tekin@uib.eu</a>.</p>
-    </div>
+    <p class="actions">
+      <a class="button" href="alperen-tekin-cv.pdf">Curriculum vitae (PDF)</a>
+      <a href="mailto:alperen.tekin@uib.eu">alperen.tekin@uib.eu</a>
+    </p>
   </div>
 
 
@@ -121,7 +189,8 @@
     </div>
 
     <!-- WORKING PAPERS
-         Each entry is a title, a grey line (year and who), then the abstract.
+         Each entry is a title, a grey line (year and who), then the abstract,
+         which starts with the word "Abstract." in italics.
          To link a draft, put the PDF in a folder called "papers", delete the
          two lines marked REMOVE around the "links" paragraph, and fill in
          the addresses. -->
@@ -132,7 +201,7 @@
         <article class="entry">
           <h4 class="title">Navigating the Void: Business Groups and Corporate Venturing</h4>
           <p class="meta">2026. Supervised by Rafel Crespí-Cladera and Alfredo Martín-Oliver.</p>
-          <p>We investigate whether and how affiliation with a business group (BG) affects the success (survival and performance) of newly created ventures compared to standalone counterparts, and how this relationship varies across institutional contexts. Using a cross-country sample of 4.5 million firms established between 2000 and 2020, we find that BG affiliation confers significant advantages in emerging markets but is detrimental in developed economies. Importantly, outcomes depend on the institutional gap between home and host countries: ventures controlled by headquarters in stronger institutional environments exhibit superior performance.</p>
+          <p class="abstract"><span class="runin">Abstract.</span> We investigate whether and how affiliation with a business group (BG) affects the success (survival and performance) of newly created ventures compared to standalone counterparts, and how this relationship varies across institutional contexts. Using a cross-country sample of 4.5 million firms established between 2000 and 2020, we find that BG affiliation confers significant advantages in emerging markets but is detrimental in developed economies. Importantly, outcomes depend on the institutional gap between home and host countries: ventures controlled by headquarters in stronger institutional environments exhibit superior performance.</p>
           <!-- REMOVE
           <p class="links"><a href="papers/navigating-the-void.pdf">PDF</a> <a href="https://ssrn.com/abstract=0000000">SSRN</a></p>
           REMOVE -->
@@ -141,7 +210,7 @@
         <article class="entry">
           <h4 class="title">Constraint-Specific Board Capital</h4>
           <p class="meta">2026. Supervised by Rafel Crespí-Cladera and Alfredo Martín-Oliver.</p>
-          <p>Business groups move capital across affiliates administratively, yet what must be in place at the receiving affiliate for capital to move is largely unexplained. We recast internal allocation as one flow constrained at two points, both relieved at the affiliate board. Access turns on the centre’s exposure to a unit it cannot easily observe and requires a tie the affiliate cannot recruit, of which kinship is the limiting case. Deployment turns on prior governance experience, which any board can hire. Across 561,981 affiliate-years from 42,643 European family business groups (2000–2020), the arrival of a family director is associated with 7.6 percentage points of additional asset growth. The increment appears in the arrival year, is no larger where that director also sits at group headquarters, and does not outlive the appointee, falling where they withdraw from governance altogether. Return on assets rises where the arriving director was experienced and holds steady where they were not. Board capital is constraint-specific: relational capital moves capital, human capital determines the rate it earns.</p>
+          <p class="abstract"><span class="runin">Abstract.</span> Business groups move capital across affiliates administratively, yet what must be in place at the receiving affiliate for capital to move is largely unexplained. We recast internal allocation as one flow constrained at two points, both relieved at the affiliate board. Access turns on the centre’s exposure to a unit it cannot easily observe and requires a tie the affiliate cannot recruit, of which kinship is the limiting case. Deployment turns on prior governance experience, which any board can hire. Across 561,981 affiliate-years from 42,643 European family business groups (2000–2020), the arrival of a family director is associated with 7.6 percentage points of additional asset growth. The increment appears in the arrival year, is no larger where that director also sits at group headquarters, and does not outlive the appointee, falling where they withdraw from governance altogether. Return on assets rises where the arriving director was experienced and holds steady where they were not. Board capital is constraint-specific: relational capital moves capital, human capital determines the rate it earns.</p>
           <!-- REMOVE
           <p class="links"><a href="papers/constraint-specific-board-capital.pdf">PDF</a> <a href="https://ssrn.com/abstract=0000000">SSRN</a></p>
           REMOVE -->
@@ -226,7 +295,10 @@
     <h2 class="heading">Curriculum vitae</h2>
 
     <div class="block">
-      <p class="main"><a href="alperen-tekin-cv.pdf">Download my CV</a> (PDF). It also lists awards, professional service and reviewing.</p>
+      <div class="main">
+        <p>The full CV also lists awards, professional service and reviewing.</p>
+        <p class="actions"><a class="button" href="alperen-tekin-cv.pdf">Curriculum vitae (PDF)</a></p>
+      </div>
     </div>
 
     <div class="block">
